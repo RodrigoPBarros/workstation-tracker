@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workstation Tracker | v1.0</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="desk-top">
+            <h1>SYSTEM_TRACKER V1.0</h1>
+            <div id="clock">00:00:00</div>
+        </header>
+
+        <main class="dashboard">
+            <section class="panel timer-panel">
+                <h2>FOCUS_TIMER</h2>
+                <div class="display-timer">25:00</div>
+                <div class="timer-controls">
+                    <button id="btn-start">START</button>
+                    <button id="btn-pause">PAUSE</button>
+                    <button id="btn-reset">RESET</button>
+                </div>
+            </section>
+
+            <section class="panel task-panel">
+                <h2>DAILY_MISSIONS</h2>
+                <div class="input-group">
+                    <input type="text" id="task-input" placeholder="Nova missão...">
+                    <select id="category-input">
+                        <option value="code">CÓDIGO</option>
+                        <option value="gym">TREINO</option>
+                        <option value="setup">SETUP</option>
+                    </select>
+                    <button id="add-task">+</button>
+                </div>
+                <ul id="task-list">
+                    </ul>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
