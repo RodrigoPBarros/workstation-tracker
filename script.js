@@ -1,9 +1,9 @@
 // 1. Relógio em Tempo Real
 function updateClock() {
-    const now = new Date();
-    // Corrigido: toLocaleTimeString para mostrar a HORA, não a data
-    const time = now.toLocaleTimeString('pt-br', { hour12: false });
-    document.getElementById('clock').innerText = time;
+  const now = new Date();
+  // Corrigido: toLocaleTimeString para mostrar a HORA, não a data
+  const time = now.toLocaleTimeString("pt-br", { hour12: false });
+  document.getElementById("clock").innerText = time;
 }
 setInterval(updateClock, 1000);
 
@@ -11,119 +11,109 @@ setInterval(updateClock, 1000);
 let timer;
 let minutes = 25;
 let seconds = 0;
-const display = document.querySelector('.display-timer');
+const display = document.querySelector(".display-timer");
 
 function startTimer() {
-    if (timer) return; 
+  if (timer) return;
 
-    timer = setInterval(() => {
-        if (seconds === 0) {
-            if (minutes === 0) {
-                clearInterval(timer);
-                display.style.color = "#facc15"; // Cor de alerta quando acaba
-                document.title = "!!! MISSÃO FINALIZADA !!!";
-                alert("Missão cumprida! Hora de um descanso.");
-                return;
-            }
-            minutes--;
-            seconds = 59;
-        } else {
-            seconds--;
-        }
-        
-        updateDisplay();
-    }, 1000);
+  timer = setInterval(() => {
+    if (seconds === 0) {
+      if (minutes === 0) {
+        clearInterval(timer);
+        display.style.color = "#facc15";
+        document.title = "!!! MISSÃO FINALIZADA !!!";
+        alert("Missão cumprida! Hora de um descanso.");
+        return;
+      }
+      minutes--;
+      seconds = 59;
+    } else {
+      seconds--;
+    }
+
+    updateDisplay();
+  }, 1000);
 }
 
 function updateDisplay() {
-    const m = minutes < 10 ? '0' + minutes : minutes;
-    const s = seconds < 10 ? '0' + seconds : seconds;
-    display.innerText = `${m}:${s}`;
+  const m = minutes < 10 ? "0" + minutes : minutes;
+  const s = seconds < 10 ? "0" + seconds : seconds;
+  display.innerText = `${m}:${s}`;
 }
 
 function pauseTimer() {
-    clearInterval(timer);
-    timer = null;
+  clearInterval(timer);
+  timer = null;
 }
 
-// 3. Eventos dos botões 
-document.getElementById('btn-start').addEventListener('click', startTimer);
-document.getElementById('btn-pause').addEventListener('click', pauseTimer);
-document.getElementById('btn-reset').addEventListener('click', () => {
-    pauseTimer();
-    minutes = 25; // Você pode mudar para 45 se quiser o desafio anterior
-    seconds = 0;
-    display.style.color = "white"; 
-    document.title = "Workstation Tracker";
-    updateDisplay();
+// 3. Eventos dos botões
+document.getElementById("btn-start").addEventListener("click", startTimer);
+document.getElementById("btn-pause").addEventListener("click", pauseTimer);
+document.getElementById("btn-reset").addEventListener("click", () => {
+  pauseTimer();
+  minutes = 25;
+  seconds = 0;
+  display.style.color = "white";
+  document.title = "Workstation Tracker";
+  updateDisplay();
 });
 
 // 4. Lógica das missões
-const taskInput = document.getElementById('task-input');
-const categoryInput = document.getElementById('category-input');
-const addBtn = document.getElementById('add-task');
-const taskList = document.getElementById('task-list');
+const taskInput = document.getElementById("task-input");
+const categoryInput = document.getElementById("category-input");
+const addBtn = document.getElementById("add-task");
+const taskList = document.getElementById("task-list");
 
 function addTask() {
-    const text = taskInput.value;
-    const category = categoryInput.value;
+  const text = taskInput.value;
+  const category = categoryInput.value;
 
-    if (text === '') return;
+  if (text === "") return;
 
-    createTaskElement(text, category);
-    saveTasks(); // Salva no LocalStorage
-    taskInput.value = ''; 
+  createTaskElement(text, category);
+  saveTasks();
+  taskInput.value = "";
 }
 
-// Função auxiliar para não repetir código no Load
 function createTaskElement(text, category) {
-    const li = document.createElement('li');
-    li.innerHTML = `
+  const li = document.createElement("li");
+  li.dataset.category = category;
+  li.dataset.text = text;
+  li.innerHTML = `
         <span>[${category.toUpperCase()}] ${text}</span>
         <button class="delete-btn">X</button>
     `;
 
-    li.querySelector('.delete-btn').addEventListener('click', () => {
-        li.remove();
-        saveTasks();
-    });
+  li.querySelector(".delete-btn").addEventListener("click", () => {
+    li.remove();
+    saveTasks();
+  });
 
-    taskList.appendChild(li);
+  taskList.appendChild(li);
 }
 
-addBtn.addEventListener('click', addTask);
+addBtn.addEventListener("click", addTask);
 
-// Corrigido: 'keypress' com 'k' minúsculo
-taskInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') addTask();
+taskInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") addTask();
 });
 
 // 5. LocalStorage
 function saveTasks() {
-    const tasks = [];
-    document.querySelectorAll('#task-list li').forEach(li => {
-        tasks.push({
-            content: li.querySelector('span').innerText
-        });
+  const tasks = [];
+  document.querySelectorAll("#task-list li").forEach((li) => {
+    tasks.push({
+      text: li.dataset.text,
+      category: li.dataset.category,
     });
-    localStorage.setItem('my_missions', JSON.stringify(tasks));
+  });
+  localStorage.setItem("my_missions", JSON.stringify(tasks));
 }
-
 function loadTasks() {
-    const savedTasks = JSON.parse(localStorage.getItem('my_missions') || '[]');
-    savedTasks.forEach(task => {
-        // Corrigido: de createAttribute para createElement
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <span>${task.content}</span>
-            <button class="delete-btn">X</button>
-        `;
-        li.querySelector('.delete-btn').addEventListener('click', () => {
-            li.remove();
-            saveTasks();
-        });
-        taskList.appendChild(li);
-    });
+  const savedTasks = JSON.parse(localStorage.getItem("my_missions") || "[]");
+  savedTasks.forEach((task) => {
+    createTaskElement(task.text, task.category);
+  });
 }
 
 loadTasks();
