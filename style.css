@@ -124,6 +124,18 @@ select {
   transform: translateX(5px);
 }
 
+#task-list li[data-category="code"] {
+    border-left-color: #3b82f6;
+}
+
+#task-list li[data-category="gym"] {
+    border-left-color: #22c55e;
+}
+
+#task-list li[data-category="setup"] {
+    border-left-color: #f97316;
+}
+
 .task-panel:hover {
   border-color: #facc15;
   box-shadow: 0 0 15px rgba(250, 204, 21, 0.1);
