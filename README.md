@@ -1,42 +1,59 @@
-# ⚡ Workstation Tracker | Productitivity Dashboard
+# Workstation Tracker — Productivity Dashboard ⚡
 
-Um dashboard de produtividade minimalista focado em alta performance, projetado com uma estética industrial que combina com setups modernos. Este projeto foi desenvolvido para gerenciar sessões de foco (Deep Work) e rastrear missões diárias sem perder os dados ao atualizar a página.
+Um dashboard de produtividade minimalista focado em alta performance. O projeto combina um cronômetro de foco estilo Pomodoro (*Deep Work*) com um gerenciador de missões diárias persistente, tudo sob uma estética industrial sóbria e sem distrações.
 
-> **Status:** Finalizado & Funcional ✅
-
----
-
-## 🚀 Tecnologias e Conceitos Aplicados
-
-* **JavaScript (ES6+):** Lógica de temporização real com `setInterval` e manipulação assíncrona de estados.
-* **Web Storage API (LocalStorage):** Implementação de persistência de dados para garantir que a lista de missões seja mantida no navegador do usuário.
-* **DOM Manipulation:** Criação e exclusão dinâmica de elementos HTML baseada nas entradas do usuário.
-* **CSS Moderno:** Grid Layout, Flexbox e animações `@keyframes` para uma experiência de usuário (UX) fluida.
+> 🌐 **Acesse o seu painel de foco:** [rodrigopbarros.github.io/workstation-tracker/](https://rodrigopbarros.github.io/workstation-tracker/)
 
 ---
 
-## ✨ Funcionalidades Principais
+### // Sobre o Projeto
 
-- **Real-Time System Clock:** Sincronização com o horário local do sistema para manter o foco no cronograma.
-- **Focus Timer (Pomodoro Style):** Cronômetro regressivo personalizável para sessões de estudo ou codificação, com alertas visuais e sonoros de conclusão.
-- **Mission Manager:** Sistema de lista de tarefas com categorização (Código, Treino, Setup) e salvamento automático.
-- **Persistence Layer:** Graças ao uso de LocalStorage, suas tarefas e progresso permanecem salvos mesmo após fechar o navegador.
+O **Workstation Tracker** foi projetado para simular o painel de controle de uma estação de trabalho física. Ele une utilitários indispensáveis para rotinas de desenvolvimento em uma interface de tela única (*single-screen*), garantindo que o usuário mantenha o foco em suas tarefas diárias sem perder seu progresso ao recarregar a página.
 
 ---
 
-## 🎨 Identidade Visual
-O design foi inspirado em workstations industriais, utilizando uma paleta de cores **Dark Mode**, tipografia **Mono-spaced** (JetBrains Mono) e acentos em **tons de madeira**, criando um ambiente de trabalho digital sóbrio e sem distrações.
+### // Stack Técnica
+
+* **HTML5 Semântico:** Estrutura focada em acessibilidade e legibilidade.
+* **CSS3 Personalizado:**
+  * Layout responsivo estruturado com **Flexbox** e **CSS Grid**.
+  * Tipografia técnica utilizando fontes mono-espaçadas (*JetBrains Mono*).
+  * Paleta de cores escura com acentos industriais em tons amadeirados e metálicos.
+* **JavaScript Vanilla (ES6+):**
+  * **Web Storage API (LocalStorage):** Persistência de dados local para gravação do estado da lista de tarefas.
+  * **Asynchronous Timing:** Lógica de temporização precisa para o cronômetro e relógio global do sistema.
+  * **Dynamic DOM Manipulation:** Criação, renderização e remoção em tempo real de elementos de interface com base em interações.
 
 ---
 
-## 🔧 Instalação e Uso
-1. Clone o repositório ou baixe os arquivos.
-2. Abra o arquivo `index.html` em qualquer navegador moderno.
-3. Defina sua missão, inicie o timer e mantenha o foco!
+### // Funcionalidades e Soluções Técnicas
+
+#### ⏱️ Focus Timer (Estilo Pomodoro)
+* Cronômetro regressivo personalizável voltado para blocos de estudo ou programação intensa (*Deep Work*).
+* Lógica assíncrona robusta que controla os estados de **Iniciar (Start)**, **Pausar (Pause)** e **Resetar (Reset)** sem atrasos de renderização.
+* Alertas visuais e feedback sonoro ao concluir o tempo estipulado.
+
+#### 📋 Gerenciador de Missões Inteligente
+* Criação de tarefas com categorização integrada por etiquetas temáticas: `[CODE]`, `[GYM]` e `[SETUP]`.
+* Sistema de remoção rápida e dinâmica de tarefas concluídas.
+
+#### 💾 Camada de Persistência de Dados (Data Persistence)
+Graças à integração com a **Web Storage API**, todo o progresso do gerenciador de missões e as configurações do usuário são salvos localmente no navegador. Os dados permanecem seguros mesmo se a aba for fechada ou a página atualizada.
+
+#### 🕒 Relógio de Sistema em Tempo Real
+Sincronização contínua com o horário local da máquina do usuário, exibido no topo do painel com atualização de segundos em tempo real para controle rigoroso de cronograma.
 
 ---
 
-## 👤 Desenvolvedor
-**Rodrigo P. Barros** *Front-end Developer em evolução, focado em lógica de programação e interfaces funcionais.*
+### // Direcionais de Estilo e Design (UI/UX)
 
-* **GitHub:** [@RodrigoPBarros](https://github.com/RodrigoPBarros)
+O projeto se destaca pela sua forte direção de arte:
+* **Tema Dark Sólido:** Reduz a fadiga ocular durante longas sessões de codificação noturna.
+* **Estética Industrial:** Inspirada em hardware, maquinário e estações de trabalho de madeira e ferro.
+* **Layout Compacto:** Design projetado para ocupar pouco espaço, ideal para ser utilizado em um segundo monitor como tela auxiliar de suporte.
+
+---
+
+### // Autor
+
+* **Rodrigo Barros** — [GitHub @RodrigoPBarros](https://github.com/RodrigoPBarros)
